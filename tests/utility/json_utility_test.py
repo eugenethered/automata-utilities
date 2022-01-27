@@ -29,6 +29,18 @@ class JsonUtilityTestCase(unittest.TestCase):
         self.assertEqual(False, as_data(json_data, 'SomethingNotThere', default=False), 'Should override default from None to False')
         self.assertEqual(True, as_data(json_data, 'SomethingNotThere', default=True), 'Should override default from None to True')
 
+    def test_override_json_default_when_data_is_empty(self):
+        json_data = as_json('', '{}')
+        self.assertEqual({}, json_data)
+
+    def test_return_json_default_when_data_is_empty(self):
+        json_data = as_json('')
+        self.assertEqual([], json_data)
+
+    def test_return_json_default_when_data_is_none(self):
+        json_data = as_json(None)
+        self.assertEqual([], json_data)
+
 
 if __name__ == '__main__':
     unittest.main()
