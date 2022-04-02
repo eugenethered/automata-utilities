@@ -1,4 +1,4 @@
-# utilities
+# automata utilities
 Automata Utilities 
 
 ## Packaging
