@@ -1,6 +1,6 @@
 import unittest
 
-from utility.json_utility import as_json, as_data
+from utility.json_utility import as_json, as_data, as_pretty_json
 
 
 class JsonUtilityTestCase(unittest.TestCase):
@@ -40,6 +40,23 @@ class JsonUtilityTestCase(unittest.TestCase):
     def test_return_json_default_when_data_is_none(self):
         json_data = as_json(None)
         self.assertEqual([], json_data)
+
+    def test_should_serialize_json_to_default_4_indent_string(self):
+        json_string = '{"instrument": "CASH", "ignore": true}'
+        json_data = as_json(json_string)
+        serialized = as_pretty_json(json_data)
+        expected = '{\n' \
+                   '    "ignore": true,\n' \
+                   '    "instrument": "CASH"\n' \
+                   '}'
+        self.assertEqual(expected, serialized)
+
+    def test_should_serialize_json_to_no_indented_string(self):
+        json_string = '{"instrument": "CASH", "ignore": true}'
+        json_data = as_json(json_string)
+        serialized = as_pretty_json(json_data, indent=None)
+        expected = '{"ignore": true, "instrument": "CASH"}'
+        self.assertEqual(expected, serialized)
 
 
 if __name__ == '__main__':
