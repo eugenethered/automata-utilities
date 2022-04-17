@@ -28,14 +28,14 @@ def get_released_version():
 
 def normalize_version(version):
     if version is None:
-        return None
+        return 0
     return int(version.replace('.', ''))
 
 
 if __name__ == '__main__':
     current_version = get_current_version()
     released_version = get_released_version()
-    if current_version is not None and released_version is not None and normalize_version(current_version) > normalize_version(released_version):
+    if normalize_version(current_version) > normalize_version(released_version):
         print('RELEASE_TO_PIPY=true')
     else:
         print('RELEASE_TO_PIPY=false')
