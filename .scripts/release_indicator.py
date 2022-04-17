@@ -3,7 +3,7 @@ import requests
 
 
 SETUP_CFG_FILE = f'{os.getcwd()}/setup.cfg'
-RELEASE_INFO_URL = 'https://pypi.org/pypi/persuader-technology-automata-utilities/json'
+RELEASE_INFO_URL = 'https://pypi.org/pypi/{module}/json'
 
 
 def read_from_file(file_path):
@@ -11,15 +11,24 @@ def read_from_file(file_path):
         return data_file.readlines()
 
 
-def get_current_version():
+def get_setup_value(setup_key):
     file_contents = read_from_file(SETUP_CFG_FILE)
-    version = [line for line in file_contents if line.find('version') >= 0]
-    normalized_version = version[0].replace('\n', '').replace(' ', '').replace('version=', '')
-    return normalized_version
+    version = [line for line in file_contents if line.find(setup_key) >= 0]
+    normalized_value = version[0].replace('\n', '').replace(' ', '').replace(f'{setup_key}=', '')
+    return normalized_value
+
+
+def get_module_name():
+    return get_setup_value('name')
+
+
+def get_current_version():
+    return get_setup_value('version')
 
 
 def get_released_version():
-    response = requests.get(RELEASE_INFO_URL)
+    url = RELEASE_INFO_URL.format(module=get_module_name())
+    response = requests.get(url)
     if response.status_code == requests.codes.ok:
         json_payload = response.json()
         latest_released_version = json_payload['info']['version']
@@ -27,9 +36,7 @@ def get_released_version():
 
 
 def normalize_version(version):
-    if version is None:
-        return 0
-    return int(version.replace('.', ''))
+    return 0 if version is None else int(version.replace('.', ''))
 
 
 if __name__ == '__main__':
