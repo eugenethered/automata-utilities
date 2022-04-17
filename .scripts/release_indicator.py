@@ -3,7 +3,7 @@ import requests
 
 
 SETUP_CFG_FILE = f'{os.getcwd()}/setup.cfg'
-RELEASE_INFO_URL = 'https://pypi.org/pypi/persuader.technology.automata.utilities/json'
+RELEASE_INFO_URL = 'https://pypi.org/pypi/persuader-technology-automata-utilities/json'
 
 
 def read_from_file(file_path):
