@@ -1,6 +1,6 @@
 import unittest
 
-from utility.string_utility import is_empty
+from coreutility.string.string_utility import is_empty
 
 
 class StringUtilityTestCase(unittest.TestCase):

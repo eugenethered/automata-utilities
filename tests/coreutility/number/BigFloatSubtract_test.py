@@ -2,7 +2,7 @@ import unittest
 
 from core.number.BigFloat import BigFloat
 
-from utility.number.BigFloatSubtract import BigFloatSubtract
+from coreutility.number.BigFloatSubtract import BigFloatSubtract
 
 
 class BigFloatSubtractTestCase(unittest.TestCase):

@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from utility.date_utility import as_file_timestamp, as_file_date_stamp
+from coreutility.date_utility import as_file_timestamp, as_file_date_stamp
 
 
 def read_from_file(file_path):

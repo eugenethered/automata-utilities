@@ -11,9 +11,3 @@ def as_json(data, default='[]'):
 
 def as_pretty_json(json_data, indent=4):
     return json.dumps(json_data, indent=indent, sort_keys=True)
-
-
-def as_data(data, key, default=None):
-    if key in data:
-        return data[key]
-    return default

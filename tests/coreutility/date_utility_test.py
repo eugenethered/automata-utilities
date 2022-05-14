@@ -1,6 +1,6 @@
 import unittest
 
-from utility.date_utility import generate_timestamp, format_to_utc_timestamp, as_file_timestamp
+from coreutility.date_utility import generate_timestamp, format_to_utc_timestamp, as_file_timestamp
 
 
 class DateUtilityTestCase(unittest.TestCase):

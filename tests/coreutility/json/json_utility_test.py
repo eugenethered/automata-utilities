@@ -1,6 +1,7 @@
 import unittest
 
-from utility.json_utility import as_json, as_data, as_pretty_json
+from coreutility.collection.dictionary_utility import as_data
+from coreutility.json.json_utility import as_json, as_pretty_json
 
 
 class JsonUtilityTestCase(unittest.TestCase):
