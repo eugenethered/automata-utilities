@@ -1,4 +1,5 @@
 import unittest
+from time import sleep
 
 from coreutility.date_utility import generate_timestamp, format_to_utc_timestamp, as_file_timestamp, get_utc_timestamp
 
@@ -22,6 +23,13 @@ class DateUtilityTestCase(unittest.TestCase):
         timestamp = format_to_utc_timestamp('2021-12-22T15:36:05.565516+00:00')
         utc_timestamp = get_utc_timestamp(timestamp)
         self.assertEqual(20211222153605565516, utc_timestamp)
+
+    def test_should_get_different_utc_timestamps(self):
+        utc_timestamp = get_utc_timestamp()
+        sleep(0.100)
+        another_utc_timestamp = get_utc_timestamp()
+        self.assertNotEqual(utc_timestamp, another_utc_timestamp)
+        self.assertTrue(another_utc_timestamp > utc_timestamp)
 
 
 if __name__ == '__main__':
