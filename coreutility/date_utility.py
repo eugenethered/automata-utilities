@@ -20,5 +20,4 @@ def as_file_date_stamp(timestamp=generate_timestamp()):
 
 def get_utc_timestamp(timestamp=None):
     timestamp_to_use = generate_timestamp() if timestamp is None else timestamp
-    utc_timestamp = timestamp_to_use.isoformat()
-    return int(utc_timestamp.replace('-', '').replace('T', '_').replace(':', '').replace('.', '_').replace('+0000', '').replace('_', ''))
+    return int(timestamp_to_use.timestamp() * 1000)

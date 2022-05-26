@@ -22,7 +22,7 @@ class DateUtilityTestCase(unittest.TestCase):
     def test_should_get_utc_timestamp(self):
         timestamp = format_to_utc_timestamp('2021-12-22T15:36:05.565516+00:00')
         utc_timestamp = get_utc_timestamp(timestamp)
-        self.assertEqual(20211222153605565516, utc_timestamp)
+        self.assertEqual(1640187365565, utc_timestamp)
 
     def test_should_get_different_utc_timestamps(self):
         utc_timestamp = get_utc_timestamp()
