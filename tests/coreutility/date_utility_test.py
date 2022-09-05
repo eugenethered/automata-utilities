@@ -33,17 +33,22 @@ class DateUtilityTestCase(unittest.TestCase):
 
     def test_should_obtain_time_in_nano_second_format(self):
         timestamp = as_nano_second_timestamp()
-        self.assertRegex(timestamp.__str__(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}Z$')
+        self.assertRegex(timestamp.__str__(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$')
 
     def test_should_generate_nano_time_from_formatted_time(self):
         timestamp = format_to_utc_timestamp('2021-12-22T15:36:05.565516+00:00')
         nano_timestamp = as_nano_second_timestamp(timestamp)
-        self.assertEqual(nano_timestamp, '2021-12-22T15:36:05.565516Z')
+        self.assertEqual(nano_timestamp, '2021-12-22T15:36:05.565Z')
+
+    def test_should_generate_shortened_nano_time_from_formatted_time_with_z(self):
+        timestamp = format_to_utc_timestamp('2021-12-22T15:36:05.565516')
+        nano_timestamp = as_nano_second_timestamp(timestamp)
+        self.assertEqual(nano_timestamp, '2021-12-22T15:36:05.565Z')
 
     def test_should_generate_nano_time_from_formatted_time_with_z(self):
         timestamp = format_to_utc_timestamp('2021-12-22T15:36:05.565516')
         nano_timestamp = as_nano_second_timestamp(timestamp)
-        self.assertEqual(nano_timestamp, '2021-12-22T15:36:05.565516Z')
+        self.assertEqual(nano_timestamp, '2021-12-22T15:36:05.565Z')
 
 
 if __name__ == '__main__':
