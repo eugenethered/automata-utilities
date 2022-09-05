@@ -21,3 +21,8 @@ def as_file_date_stamp(timestamp=generate_timestamp()):
 def get_utc_timestamp(timestamp=None):
     timestamp_to_use = generate_timestamp() if timestamp is None else timestamp
     return int(timestamp_to_use.timestamp() * 1000)
+
+
+def as_nano_second_timestamp(timestamp=generate_timestamp()):
+    utc_timestamp = timestamp.isoformat()
+    return utc_timestamp.replace('+00:00', 'Z')

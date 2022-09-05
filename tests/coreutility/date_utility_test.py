@@ -1,7 +1,7 @@
 import unittest
 from time import sleep
 
-from coreutility.date_utility import generate_timestamp, format_to_utc_timestamp, as_file_timestamp, get_utc_timestamp
+from coreutility.date_utility import generate_timestamp, format_to_utc_timestamp, as_file_timestamp, get_utc_timestamp, as_nano_second_timestamp
 
 
 class DateUtilityTestCase(unittest.TestCase):
@@ -30,6 +30,15 @@ class DateUtilityTestCase(unittest.TestCase):
         another_utc_timestamp = get_utc_timestamp()
         self.assertNotEqual(utc_timestamp, another_utc_timestamp)
         self.assertTrue(another_utc_timestamp > utc_timestamp)
+
+    def test_should_obtain_time_in_nano_second_format(self):
+        timestamp = as_nano_second_timestamp()
+        self.assertRegex(timestamp.__str__(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}Z$')
+
+    def test_should_generate_nano_time_from_formatted_time(self):
+        timestamp = format_to_utc_timestamp('2021-12-22T15:36:05.565516+00:00')
+        nano_timestamp = as_nano_second_timestamp(timestamp)
+        self.assertEqual(nano_timestamp, '2021-12-22T15:36:05.565516Z')
 
 
 if __name__ == '__main__':
