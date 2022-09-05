@@ -40,6 +40,11 @@ class DateUtilityTestCase(unittest.TestCase):
         nano_timestamp = as_nano_second_timestamp(timestamp)
         self.assertEqual(nano_timestamp, '2021-12-22T15:36:05.565516Z')
 
+    def test_should_generate_nano_time_from_formatted_time_with_z(self):
+        timestamp = format_to_utc_timestamp('2021-12-22T15:36:05.565516')
+        nano_timestamp = as_nano_second_timestamp(timestamp)
+        self.assertEqual(nano_timestamp, '2021-12-22T15:36:05.565516Z')
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -25,4 +25,5 @@ def get_utc_timestamp(timestamp=None):
 
 def as_nano_second_timestamp(timestamp=generate_timestamp()):
     utc_timestamp = timestamp.isoformat()
-    return utc_timestamp.replace('+00:00', 'Z')
+    nano_time = utc_timestamp.replace('+00:00', 'Z')
+    return nano_time if nano_time.endswith('Z') else f'{nano_time}Z'
