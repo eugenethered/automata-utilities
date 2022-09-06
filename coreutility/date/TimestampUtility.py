@@ -10,8 +10,10 @@ class TimestampUtility:
 
     @staticmethod
     def to_datetime_string(nanoseconds):
-        conventional_time = nanoseconds // 1000000000
-        nano_intervals = nanoseconds % 1000000000
+        nanoseconds_len = len(str(nanoseconds))
+        divisor = 1000000000 if nanoseconds_len > 16 else 1000000
+        conventional_time = nanoseconds // divisor
+        nano_intervals = nanoseconds % divisor
         conventional_datetime = datetime.utcfromtimestamp(conventional_time)
         return conventional_datetime.strftime('%Y-%m-%dT%H:%M:%S.%f').replace('000000', str(nano_intervals) + 'Z')
 
