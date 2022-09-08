@@ -23,10 +23,16 @@ class NanoTimestamp:
         return int(utc_timestamp * 1000000)
 
     @staticmethod
-    def to_string(nanoseconds):
-        nanoseconds_len = len(str(nanoseconds))
-        divisor = 1000000000 if nanoseconds_len > 16 else 1000000
-        conventional_time = nanoseconds // divisor
-        nano_intervals = nanoseconds % divisor
-        conventional_datetime = datetime.utcfromtimestamp(conventional_time)
-        return conventional_datetime.strftime('%Y-%m-%dT%H:%M:%S.%f').replace('000000', str(nano_intervals) + 'Z')
+    def to_string(value):
+        if type(value) == datetime:
+            nano_datetime = value
+            utc_datetime = nano_datetime.replace(tzinfo=timezone.utc)
+            return utc_datetime.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+        else:
+            nanoseconds = value
+            nanoseconds_len = len(str(nanoseconds))
+            divisor = 1000000000 if nanoseconds_len > 16 else 1000000
+            conventional_time = nanoseconds // divisor
+            nano_intervals = nanoseconds % divisor
+            conventional_datetime = datetime.utcfromtimestamp(conventional_time)
+            return conventional_datetime.strftime('%Y-%m-%dT%H:%M:%S.%f').replace('000000', str(nano_intervals) + 'Z')
