@@ -35,7 +35,6 @@ class NanoTimestampTestCase(unittest.TestCase):
     def test_should_obtain_utc_datetime_string_from_datetime(self):
         nano_ish_datetime = datetime(2022, 9, 6, 14, 11, 24, 448608)
         datetime_string = NanoTimestamp.to_string(nano_ish_datetime)
-        print(f'sooooo?! [{datetime_string}] ')
         self.assertEqual(datetime_string, '2022-09-06T14:11:24.448608Z')
 
 
