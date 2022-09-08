@@ -20,7 +20,7 @@ class NanoTimestamp:
     @staticmethod
     def as_nanoseconds(datetime_value):
         utc_timestamp = datetime_value.replace(tzinfo=timezone.utc).timestamp()
-        return int(utc_timestamp * 1000000)
+        return int(utc_timestamp * 1000000) * 1000
 
     @staticmethod
     def to_string(value):

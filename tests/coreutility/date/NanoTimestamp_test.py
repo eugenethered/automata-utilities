@@ -20,7 +20,7 @@ class NanoTimestampTestCase(unittest.TestCase):
         # python cannot yet handle nano time (therefore-ish)
         nano_ish_datetime = datetime(2022, 9, 6, 14, 11, 24, 448608)
         nanoseconds = NanoTimestamp.as_nanoseconds(nano_ish_datetime)
-        self.assertEqual(nanoseconds, 1662473484448608)
+        self.assertEqual(nanoseconds, 1662473484448608000)
 
     def test_should_obtain_utc_datetime_string_from_nanoseconds(self):
         nanoseconds = 1662473484448608385
