@@ -43,6 +43,12 @@ class NanoTimestampTestCase(unittest.TestCase):
         datetime_string = NanoTimestamp.to_string(nano_ish_datetime)
         self.assertEqual(datetime_string, '2022-09-06T14:11:24.448608Z')
 
+    def test_should_obtain_shortened_nanoseconds_from_true_nanoseconds(self):
+        # python cannot yet handle nano time (therefore-ish)
+        nanoseconds = 1662473484448608385
+        nano_ish_seconds = NanoTimestamp.as_shorted_nanoseconds(nanoseconds)
+        self.assertEqual(nano_ish_seconds, 1662473484448608000)
+
 
 if __name__ == '__main__':
     unittest.main()

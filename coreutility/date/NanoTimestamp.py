@@ -23,6 +23,10 @@ class NanoTimestamp:
         return int(utc_timestamp * 1000000) * 1000
 
     @staticmethod
+    def as_shorted_nanoseconds(nanoseconds):
+        return nanoseconds - (nanoseconds % 1000)
+
+    @staticmethod
     def to_string(value):
         if type(value) == datetime:
             nano_datetime = value
